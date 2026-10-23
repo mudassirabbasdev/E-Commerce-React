@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+/*
+  ============================================================
+  COLOUR PALETTE  (edit ONLY this block to re-theme the site)
+
+  Palette (sampled from the swatch board):
+    ice        #dadce7     powder     #c2cdde     sky       #adbdd6
+    azure      #7e99bf     cornflower #5878ae     cobalt    #1c397b
+    sapphire   #112965     royal      #0c1d49     navy      #0d1633
+    midnight   #0f131f
+
+  Every component uses the names below (brand-*, gray-*, accent,
+  page, ink, surface, plus the raw palette names for text on dark).
+  ============================================================
+*/
+@theme {
+  /* Raw palette (used directly for text/borders on dark areas) */
+  --color-ice:        #dadce7;
+  --color-powder:     #c2cdde;
+  --color-sky:        #adbdd6;
+  --color-azure:      #7e99bf;
+  --color-cornflower: #5878ae;
+  --color-cobalt:     #1c397b;
+  --color-sapphire:   #112965;
+  --color-royal:      #0c1d49;
+  --color-navy:       #0d1633;
+  --color-midnight:   #0f131f;
+
+  /* Brand scale: light to dark */
+  --color-brand-50:  #dadce7;   /* ice        soft backgrounds, badges        */
+  --color-brand-100: #c2cdde;   /* powder     light text on dark              */
+  --color-brand-200: #adbdd6;   /* sky        focus ring, eyebrow text        */
+  --color-brand-500: #5878ae;   /* cornflower focus border, hover accents     */
+  --color-brand-600: #1c397b;   /* cobalt     buttons, links, logo            */
+  --color-brand-700: #112965;   /* sapphire   button hover                    */
+  --color-brand-800: #0d1633;   /* navy       hero gradient end               */
+
+  /* Neutral scale re-mapped to the palette (borders, text, hovers) */
+  --color-gray-50:  #dadce7;    /* ice        */
+  --color-gray-100: #dadce7;    /* ice        hover backgrounds               */
+  --color-gray-200: #c2cdde;    /* powder     card borders                    */
+  --color-gray-300: #adbdd6;    /* sky        input borders, light text       */
+  --color-gray-400: #7e99bf;    /* azure      placeholders, muted on dark     */
+  --color-gray-500: #1c397b;    /* cobalt     muted text                      */
+  --color-gray-600: #112965;    /* sapphire   body text                       */
+  --color-gray-700: #0c1d49;    /* royal      strong text                     */
+  --color-gray-800: #0d1633;    /* navy       dark borders                    */
+  --color-gray-900: #0f131f;    /* midnight   headings                        */
+
+  --color-accent:  #5878ae;     /* star ratings */
+  --color-page:    #dadce7;     /* page background */
+  --color-ink:     #0f131f;     /* main text + footer background */
+  --color-surface: #ffffff;     /* cards and header (set to #dadce7 for a fully palette-only look) */
+}
