@@ -1,8 +1,9 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import ProductCard from '../components/common/ProductCard'
 import { ProductContext } from '../context/ProductContext'
 import hero from '../assets/hero.png'
+import AnimatedText from '../components/common/AnimatedText'
 
 
 // Plain data array: we map over it below to avoid repeating the same JSX 3 times
@@ -18,6 +19,11 @@ const Home = () => {
   // First 4 products only
   const featured = products.slice(0, 4)
 
+  // Shop-by-category tiles built from the loaded products
+  const categories = [...new Set((Array.isArray(products) ? products : []).map((p) => p.category))]
+  const [email, setEmail] = useState('')
+  const [subscribed, setSubscribed] = useState(false)
+
   return (
     <div className="space-y-16">
 
@@ -30,9 +36,12 @@ const Home = () => {
           <p className="text-sm font-semibold uppercase tracking-widest text-black">
             New Season Collection
           </p>
-          <h1 className="mx-auto mt-4 max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-            Find everything you love in one place
-          </h1>
+          <AnimatedText
+            as="h1"
+            text="Find everything you love in one place"
+            className="mx-auto mt-4 max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl"
+            delay={0.2}
+          />
           <p className="mx-auto mt-6 max-w-xl text-base text-black sm:text-lg">
             Discover quality products at fair prices, delivered fast to your door.
           </p>
@@ -121,6 +130,39 @@ const Home = () => {
           </div>
         )}
       </section>
+
+
+      {/* Shop by category */}
+      {categories.length > 0 && (
+        <section>
+          <div className="mb-8 text-center">
+            <p className="text-sm font-semibold uppercase tracking-widest text-[#4a8f78]">
+              Browse
+            </p>
+            <AnimatedText
+              as="h2"
+              text="Shop by Category"
+              className="anim-underline mt-2 text-3xl font-extrabold tracking-tight text-[#163d33]"
+            />
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {categories.map((c) => (
+              <Link
+                key={c}
+                to="/shop"
+                className="group rounded-xl border border-[#4a8f78]/20 bg-white p-6 text-center shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#4a8f78] hover:bg-black hover:shadow-lg"
+              >
+                <p className="text-lg font-semibold capitalize text-[#163d33] transition group-hover:text-[#60cfaa]">
+                  {c}
+                </p>
+                <p className="mt-1 text-xs text-[#4a8f78]">
+                  {products.filter((p) => p.category === c).length} products &rarr;
+                </p>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
 
       {/* Why Choose Us */}
@@ -359,8 +401,46 @@ const Home = () => {
           </div>
         </section>
 
-
-
+      {/* Newsletter */}
+      <section className="rounded-2xl bg-black px-6 py-12 text-center sm:px-10">
+        <AnimatedText
+          as="h2"
+          text="Get 10% off your first order"
+          className="text-2xl font-bold text-white sm:text-3xl"
+        />
+        <p className="mx-auto mt-3 max-w-md text-sm text-gray-300">
+          Join our newsletter for new arrivals, offers and shopping tips.
+        </p>
+        {subscribed ? (
+          <p className="mt-6 font-semibold text-[#60cfaa]">
+            Thanks for subscribing!
+          </p>
+        ) : (
+          <form
+            onSubmit={(e) => {
+              e.preventDefault()
+              setSubscribed(true)
+              setEmail('')
+            }}
+            className="mx-auto mt-6 flex max-w-md flex-col gap-3 sm:flex-row"
+          >
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@example.com"
+              className="w-full rounded-lg border border-[#4a8f78]/50 bg-white px-4 py-2.5 text-sm text-[#163d33] outline-none focus:border-[#60cfaa] focus:ring-2 focus:ring-[#8fc4ad]"
+            />
+            <button
+              type="submit"
+              className="rounded-lg bg-[#60cfaa] px-6 py-2.5 text-sm font-semibold text-black transition hover:bg-white active:scale-95"
+            >
+              Subscribe
+            </button>
+          </form>
+        )}
+      </section>
 
     </div>
   )

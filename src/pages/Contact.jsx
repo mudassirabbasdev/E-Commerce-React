@@ -1,10 +1,24 @@
 
 import React, { useState } from 'react'
+import AnimatedText from '../components/common/AnimatedText'
 
 const info = [
   { label: 'Email', value: 'support@mystore.com' },
   { label: 'Phone', value: '+92 300 0000000' },
   { label: 'Address', value: 'Karachi, Pakistan' },
+]
+
+const hours = [
+  { day: 'Monday – Friday', time: '9:00 AM – 8:00 PM' },
+  { day: 'Saturday', time: '10:00 AM – 6:00 PM' },
+  { day: 'Sunday', time: 'Closed' },
+]
+
+const faqs = [
+  { q: 'How long does delivery take?', a: 'Most orders arrive within 2–5 business days depending on your city.' },
+  { q: 'Can I return a product?', a: 'Yes. You can return items within 30 days of delivery in their original condition.' },
+  { q: 'How can I track my order?', a: "Once your order ships, we'll email you a tracking link." },
+  { q: 'Which payment methods do you accept?', a: 'We accept major cards and cash on delivery in selected cities.' },
 ]
 
 const inputClass =
@@ -31,15 +45,18 @@ const Contact = () => {
     <section>
       {/* Heading */}
       <div className="mx-auto max-w-2xl text-center">
-        <p className="text-sm font-semibold uppercase tracking-widest text-[#4a8f78]">
+        <p className="text-eyebrow text-sm font-semibold uppercase tracking-widest text-[#4a8f78]">
           Get in touch
         </p>
 
-        <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-[#163d33]">
-          Contact us
-        </h1>
+        <AnimatedText
+          as="h1"
+          text="Contact us"
+          className="mt-3 text-4xl font-extrabold tracking-tight text-[#163d33]"
+          delay={0.2}
+        />
 
-        <p className="mt-4 leading-7 text-[#163d33]/70">
+        <p style={{ '--t': '0.5s' }} className="text-animate mt-4 leading-7 text-[#163d33]/70">
           Have a question? Send us a message and we'll reply within one business day.
         </p>
       </div>
@@ -62,6 +79,21 @@ const Contact = () => {
               </p>
             </div>
           ))}
+
+          {/* Opening hours */}
+          <div className="rounded-xl border border-[#4a8f78]/20 bg-[#163d33] p-5 shadow-sm">
+            <p className="text-xs font-semibold uppercase tracking-wider text-[#8fc4ad]">
+              Opening hours
+            </p>
+            <ul className="mt-3 space-y-2 text-sm text-white">
+              {hours.map((h) => (
+                <li key={h.day} className="flex justify-between gap-3">
+                  <span className="text-gray-300">{h.day}</span>
+                  <span className="font-medium">{h.time}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         {/* Contact Form */}
@@ -144,6 +176,37 @@ const Contact = () => {
             Send message
           </button>
         </form>
+      </div>
+
+      {/* FAQ */}
+      <div className="mt-16">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="text-sm font-semibold uppercase tracking-widest text-[#4a8f78]">
+            Quick answers
+          </p>
+          <AnimatedText
+            as="h2"
+            text="Frequently Asked Questions"
+            className="anim-underline mt-3 text-3xl font-extrabold tracking-tight text-[#163d33]"
+          />
+        </div>
+
+        <div className="mx-auto mt-10 max-w-3xl space-y-3">
+          {faqs.map((f) => (
+            <details
+              key={f.q}
+              className="group rounded-xl border border-[#8fc4ad]/40 bg-white p-5 shadow-sm transition hover:border-[#4a8f78]"
+            >
+              <summary className="flex cursor-pointer list-none items-center justify-between font-semibold text-[#163d33]">
+                {f.q}
+                <span className="ml-4 text-xl text-[#4a8f78] transition-transform duration-300 group-open:rotate-45">
+                  +
+                </span>
+              </summary>
+              <p className="mt-3 text-sm leading-6 text-[#163d33]/70">{f.a}</p>
+            </details>
+          ))}
+        </div>
       </div>
     </section>
   )

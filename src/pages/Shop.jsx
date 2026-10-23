@@ -2,6 +2,8 @@
 import React, { useContext, useState } from 'react'
 import ProductCard from '../components/common/ProductCard'
 import { ProductContext } from '../context/ProductContext'
+import AnimatedText from '../components/common/AnimatedText'
+import { Link } from 'react-router-dom'
 
 const Shop = () => {
   const { products, loading } = useContext(ProductContext)
@@ -60,22 +62,26 @@ const Shop = () => {
         <div className="absolute -right-16 -top-16 -z-10 h-64 w-64 rounded-full bg-[#8fc4ad]/20 blur-3xl" />
         <div className="absolute -bottom-20 -left-16 -z-10 h-64 w-64 rounded-full bg-[#8fc4ad]/20 blur-3xl" />
 
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#8fc4ad]">
+        <p className="text-eyebrow text-sm font-semibold uppercase tracking-[0.2em] text-[#8fc4ad]">
           Discover Our Collection
         </p>
 
-        <h1 className="mx-auto mt-4 max-w-3xl text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
-          Shop Your Favorites
-        </h1>
+        <AnimatedText
+          as="h1"
+          text="Shop Your Favorites"
+          className="mx-auto mt-4 max-w-3xl text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl"
+          delay={0.2}
+        />
 
-        <p className="mx-auto mt-5 max-w-xl text-base leading-7 text-white/80 sm:text-lg">
+        <p style={{ '--t': '0.6s' }} className="text-animate mx-auto mt-5 max-w-xl text-base leading-7 text-white/80 sm:text-lg">
           Discover quality products, explore our collection, and find
           something you love at great prices.
         </p>
 
         <a
           href="#shop-products"
-          className="mt-8 inline-flex rounded-lg bg-[#8fc4ad] px-7 py-3 text-sm font-bold text-[#102c25] transition hover:bg-white"
+          style={{ '--t': '0.8s' }}
+          className="text-animate mt-8 inline-flex rounded-lg bg-[#8fc4ad] px-7 py-3 text-sm font-bold text-[#102c25] transition hover:bg-white"
         >
           Explore Products
         </a>
@@ -83,13 +89,34 @@ const Shop = () => {
 
       {/* Shop Heading - Always Visible */}
       <div className="mb-6">
-        <h2 className="text-3xl font-bold tracking-tight text-[#163d33]">
-          Shop
-        </h2>
+        <AnimatedText
+          as="h2"
+          text="Shop"
+          className="text-3xl font-bold tracking-tight text-[#163d33]"
+        />
         <p className="mt-1 text-sm text-gray-500">
           Browse our latest products
         </p>
       </div>
+
+      {/* Quick category chips */}
+      {categories.length > 1 && (
+        <div className="mb-4 flex flex-wrap gap-2">
+          {categories.map((c) => (
+            <button
+              key={c}
+              onClick={() => setCategory(c)}
+              className={`rounded-full border px-4 py-1.5 text-xs font-semibold capitalize transition active:scale-95 ${
+                category === c
+                  ? 'border-black bg-black text-[#60cfaa]'
+                  : 'border-[#4a8f78]/40 bg-white text-[#163d33] hover:border-[#4a8f78] hover:bg-[#4a8f78]/10'
+              }`}
+            >
+              {c}
+            </button>
+          ))}
+        </div>
+      )}
 
       {/* Search, Category and Sort Controls */}
       <div className="mb-6 grid gap-3 rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:grid-cols-2 lg:grid-cols-4">
@@ -191,6 +218,41 @@ const Shop = () => {
             ))}
           </div>
         )}
+      </div>
+
+      {/* Shopping perks */}
+      <div className="mt-16 grid gap-4 sm:grid-cols-3">
+        {[
+          { title: 'Free Shipping', text: 'On all orders over $50' },
+          { title: 'Secure Checkout', text: 'Your payment details stay protected' },
+          { title: '30-Day Returns', text: 'Changed your mind? No problem' },
+        ].map((perk) => (
+          <div
+            key={perk.title}
+            className="rounded-xl border border-[#4a8f78]/20 bg-white p-5 text-center shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#4a8f78] hover:shadow-md"
+          >
+            <h3 className="font-semibold text-[#163d33]">{perk.title}</h3>
+            <p className="mt-1 text-sm text-gray-600">{perk.text}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* Need help banner */}
+      <div className="mt-10 rounded-2xl bg-[#163d33] px-6 py-12 text-center">
+        <AnimatedText
+          as="h2"
+          text="Can't find what you're looking for?"
+          className="text-2xl font-bold text-white"
+        />
+        <p className="mx-auto mt-3 max-w-md text-sm text-gray-300">
+          Our team is happy to help you pick the right product.
+        </p>
+        <Link
+          to="/contact"
+          className="mt-6 inline-block rounded-lg border border-ice/60 bg-black px-8 py-3 text-sm font-semibold text-[#60cfaa] transition hover:bg-white hover:text-black"
+        >
+          Talk to us
+        </Link>
       </div>
 
     </section>
