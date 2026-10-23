@@ -1,3 +1,4 @@
+
 import React, { useContext, useState } from 'react'
 import ProductCard from '../components/common/ProductCard'
 import { ProductContext } from '../context/ProductContext'
@@ -5,63 +6,94 @@ import { ProductContext } from '../context/ProductContext'
 const Shop = () => {
   const { products, loading } = useContext(ProductContext)
 
-  // All hooks must be at the TOP, before any early return
+  // States
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState('all')
   const [sort, setSort] = useState('default')
 
-  // 1. Loading
-  if (loading) {
-    return (
-      <div className="flex min-h-[50vh] flex-col items-center justify-center gap-4">
-        <div className="h-10 w-10 animate-spin rounded-full border-4 border-gray-200 border-t-brand-600" />
-        <p className="text-sm text-gray-500">Loading products...</p>
-      </div>
-    )
-  }
+  // Handle empty or undefined products safely
+  const productList = Array.isArray(products) ? products : []
 
-  // 2. Nothing came from the API
-  if (products.length === 0) {
-    return (
-      <div className="flex min-h-[50vh] flex-col items-center justify-center text-center">
-        <h2 className="text-xl font-semibold text-gray-900">No products found</h2>
-        <p className="mt-2 text-sm text-gray-500">
-          Please check your connection and try again.
-        </p>
-      </div>
-    )
-  }
+  // Get categories from available products
+  const categories = [
+    'all',
+    ...new Set(productList.map((p) => p.category)),
+  ]
 
-  // 3. Derived data: calculated from products + the 3 states, not stored
-  const categories = ['all', ...new Set(products.map((p) => p.category))]
+  // Filter products by search and category
+  let visible = productList.filter((p) => {
+    const matchesSearch = p.title
+      .toLowerCase()
+      .includes(search.toLowerCase())
 
-  let visible = products.filter((p) => {
-    const matchesSearch = p.title.toLowerCase().includes(search.toLowerCase())
-    const matchesCategory = category === 'all' || p.category === category
+    const matchesCategory =
+      category === 'all' || p.category === category
+
     return matchesSearch && matchesCategory
   })
 
-  if (sort === 'low') visible = [...visible].sort((a, b) => a.price - b.price)
-  if (sort === 'high') visible = [...visible].sort((a, b) => b.price - a.price)
+  // Sort products by price
+  if (sort === 'low') {
+    visible = [...visible].sort((a, b) => a.price - b.price)
+  }
 
+  if (sort === 'high') {
+    visible = [...visible].sort((a, b) => b.price - a.price)
+  }
+
+  // Reset filters
   const clearFilters = () => {
     setSearch('')
     setCategory('all')
     setSort('default')
   }
 
+  // Input styling
   const fieldClass =
-    'rounded-lg border border-gray-300 bg-surface px-4 py-2.5 text-sm text-gray-900 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-200'
+    'w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm text-gray-900 outline-none transition focus:border-[#4a8f78] focus:ring-2 focus:ring-[#8fc4ad]'
 
   return (
-    <section>
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold tracking-tight text-gray-900">Shop</h1>
-        <p className="mt-1 text-sm text-gray-500">Browse our latest products</p>
+    <section className="pb-12">
+
+      {/* Hero Section - Always Visible */}
+      <div className="relative isolate mb-10 overflow-hidden rounded-2xl bg-gradient-to-r from-[#102c25] via-[#163d33] to-[#4a8f78] px-6 py-16 text-center sm:px-12 sm:py-24">
+        <div className="absolute -right-16 -top-16 -z-10 h-64 w-64 rounded-full bg-[#8fc4ad]/20 blur-3xl" />
+        <div className="absolute -bottom-20 -left-16 -z-10 h-64 w-64 rounded-full bg-[#8fc4ad]/20 blur-3xl" />
+
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#8fc4ad]">
+          Discover Our Collection
+        </p>
+
+        <h1 className="mx-auto mt-4 max-w-3xl text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
+          Shop Your Favorites
+        </h1>
+
+        <p className="mx-auto mt-5 max-w-xl text-base leading-7 text-white/80 sm:text-lg">
+          Discover quality products, explore our collection, and find
+          something you love at great prices.
+        </p>
+
+        <a
+          href="#shop-products"
+          className="mt-8 inline-flex rounded-lg bg-[#8fc4ad] px-7 py-3 text-sm font-bold text-[#102c25] transition hover:bg-white"
+        >
+          Explore Products
+        </a>
       </div>
 
-      {/* Controls */}
-      <div className="mb-8 grid gap-3 rounded-xl border border-gray-200 bg-surface p-4 shadow-sm sm:grid-cols-2 lg:grid-cols-4">
+      {/* Shop Heading - Always Visible */}
+      <div className="mb-6">
+        <h2 className="text-3xl font-bold tracking-tight text-[#163d33]">
+          Shop
+        </h2>
+        <p className="mt-1 text-sm text-gray-500">
+          Browse our latest products
+        </p>
+      </div>
+
+      {/* Search, Category and Sort Controls */}
+      <div className="mb-6 grid gap-3 rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:grid-cols-2 lg:grid-cols-4">
+
         <input
           type="text"
           placeholder="Search products..."
@@ -93,29 +125,74 @@ const Shop = () => {
         </select>
       </div>
 
-      <p className="mb-4 text-sm text-gray-500">
-        Showing {visible.length} of {products.length} products
-      </p>
+      {/* Products Section */}
+      <div id="shop-products" className="scroll-mt-6">
 
-      {/* Results */}
-      {visible.length === 0 ? (
-        <div className="rounded-xl border border-dashed border-gray-300 py-16 text-center">
-          <h2 className="text-lg font-semibold text-gray-900">No matching products</h2>
-          <p className="mt-1 text-sm text-gray-500">Try a different search or category.</p>
-          <button
-            onClick={clearFilters}
-            className="mt-5 rounded-lg bg-brand-600 px-5 py-2.5 text-sm font-semibold text-ice transition hover:bg-brand-700"
-          >
-            Clear filters
-          </button>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {visible.map((item) => (
-            <ProductCard key={item.id} product={item} />
-          ))}
-        </div>
-      )}
+        {/* Product Count */}
+        {!loading && productList.length > 0 && (
+          <p className="mb-4 text-sm text-gray-500">
+            Showing {visible.length} of {productList.length} products
+          </p>
+        )}
+
+        {/* Loading State - Only in Products Section */}
+        {loading ? (
+          <div className="flex min-h-[30vh] flex-col items-center justify-center gap-4 rounded-xl bg-[#f8f7f2]">
+            <div className="h-10 w-10 animate-spin rounded-full border-4 border-gray-200 border-t-[#4a8f78]" />
+            <p className="text-sm text-gray-500">
+              Loading products...
+            </p>
+          </div>
+
+        ) : productList.length === 0 ? (
+
+          /* API Error or Empty Products */
+          <div className="rounded-xl border border-dashed border-gray-300 bg-[#f8f7f2] px-5 py-16 text-center">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#8fc4ad]/30 text-2xl text-[#163d33]">
+              !
+            </div>
+
+            <h3 className="mt-4 text-xl font-bold text-[#163d33]">
+              Products Unavailable
+            </h3>
+
+            <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-gray-500">
+              We couldn't load the products right now. Please check
+              your internet connection or come back later.
+            </p>
+          </div>
+
+        ) : visible.length === 0 ? (
+
+          /* No Search Results */
+          <div className="rounded-xl border border-dashed border-gray-300 py-16 text-center">
+            <h3 className="text-lg font-semibold text-[#163d33]">
+              No matching products
+            </h3>
+
+            <p className="mt-1 text-sm text-gray-500">
+              Try a different search or category.
+            </p>
+
+            <button
+              onClick={clearFilters}
+              className="mt-5 rounded-lg bg-[#4a8f78] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#163d33]"
+            >
+              Clear Filters
+            </button>
+          </div>
+
+        ) : (
+
+          /* Product Cards */
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {visible.map((item) => (
+              <ProductCard key={item.id} product={item} />
+            ))}
+          </div>
+        )}
+      </div>
+
     </section>
   )
 }

@@ -1,10 +1,11 @@
+
 import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Cart = () => {
   return (
     <div className="flex min-h-[50vh] flex-col items-center justify-center text-center">
-      <div className="flex h-20 w-20 items-center justify-center rounded-full bg-brand-50 text-brand-600">
+      <div className="flex h-20 w-20 items-center justify-center rounded-full bg-[#8fc4ad]/25 text-[#4a8f78]">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -20,13 +21,18 @@ const Cart = () => {
           />
         </svg>
       </div>
-      <h2 className="mt-6 text-2xl font-bold text-gray-900">Your cart is empty</h2>
-      <p className="mt-2 text-sm text-gray-500">
+
+      <h2 className="mt-6 text-2xl font-bold text-[#163d33]">
+        Your cart is empty
+      </h2>
+
+      <p className="mt-2 text-sm text-[#163d33]/60">
         Looks like you haven't added anything yet.
       </p>
+
       <Link
         to="/shop"
-        className="mt-6 rounded-lg bg-brand-600 px-6 py-3 text-sm font-semibold text-ice transition hover:bg-brand-700"
+        className="mt-6 rounded-lg bg-[#4a8f78] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#163d33] active:scale-95"
       >
         Start Shopping
       </Link>

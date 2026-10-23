@@ -11,37 +11,50 @@ const links = [
 const Header = () => {
   // NavLink gives us { isActive }: true when the link matches the current URL
   const linkClass = ({ isActive }) =>
-    `text-sm font-medium transition-colors hover:text-brand-500 ${
+    `text-sm font-medium transition-colors hover:text-[#4a8f78] ${
       isActive
-        ? 'text-brand-600 underline decoration-2 underline-offset-8'
-        : 'text-gray-600'
+        ? 'text-white underline decoration-2 underline-offset-8'
+        : 'text-white'
     }`
 
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-200 bg-surface/90 backdrop-blur">
+    <header className="sticky top-3 z-50 m-6 rounded-full  border-b border-gray-200 bg-black backdrop-blur">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-y-2 px-4 py-4 sm:px-6 lg:px-8">
 
         {/* Left: logo */}
-        <Link to="/" className="text-xl font-bold tracking-tight text-brand-600">
+        <Link to="/" className="text-xl font-bold tracking-tight text-[#4a8f78]">
           MyStore
         </Link>
 
         {/* Right: links + cart (wraps onto a second line on small screens) */}
-        <nav className="flex flex-wrap items-center gap-x-4 gap-y-2 sm:gap-x-8">
+        <nav className="flex flex-wrap  items-center gap-x-4 gap-y-2 sm:gap-x-8">
           {links.map((l) => (
             <NavLink key={l.to} to={l.to} end={l.end} className={linkClass}>
               {l.label}
             </NavLink>
           ))}
 
-          <NavLink to="/cart" aria-label="Cart" className="text-gray-700 hover:text-brand-600">
+          
+
+          {/* Auth buttons */}
+          <NavLink to="/login" className={linkClass}>
+            Log in
+          </NavLink>
+          <Link
+            to="/signup"
+            className="rounded-lg  bg-[#60cfaa] px-4 py-2 text-sm font-semibold  transition hover:bg-white active:scale-95"
+          >
+            Sign up
+          </Link>
+
+          <NavLink to="/cart" aria-label="Cart" className="rounded-lg bg-[#60cfaa] px-4 py-2 text-sm font-semibold  transition hover:bg-white active:scale-95">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.8}
               stroke="currentColor"
-              className="h-6 w-6"
+              className="h-6 w-10"
             >
               <path
                 strokeLinecap="round"
@@ -51,16 +64,7 @@ const Header = () => {
             </svg>
           </NavLink>
 
-          {/* Auth buttons */}
-          <NavLink to="/login" className={linkClass}>
-            Log in
-          </NavLink>
-          <Link
-            to="/signup"
-            className="rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-ice transition hover:bg-brand-700 active:scale-95"
-          >
-            Sign up
-          </Link>
+
         </nav>
       </div>
     </header>
