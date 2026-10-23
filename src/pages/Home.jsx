@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import ProductCard from '../components/common/ProductCard'
-import Lightfall from '../components/common/Lightfall'
 import { ProductContext } from '../context/ProductContext'
 
 // Plain data array: we map over it below to avoid repeating the same JSX 3 times
@@ -22,24 +21,6 @@ const Home = () => {
 
       {/* 1. Hero (Lightfall animation sits behind the text) */}
       <section className="relative isolate overflow-hidden rounded-2xl bg-linear-to-r from-brand-600 to-brand-800 text-center text-ice">
-
-        {/* Animated background layer */}
-        <div className="absolute inset-0 -z-10">
-          <Lightfall
-            colors={['#dadce7', '#adbdd6', '#7e99bf']}
-            backgroundColor="#5878ae"
-            speed={0.3}
-            streakCount={3}
-            streakWidth={0.8}
-            twinkle={0.3}
-            backgroundGlow={0.15}
-            headGlow={0.6}
-            bloom={0.35}
-            mouseInteraction
-            holdToWarp
-            intro
-          />
-        </div>
 
         {/* Content layer */}
         <div className="px-6 py-16 sm:px-12 sm:py-24">
