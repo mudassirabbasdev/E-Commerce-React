@@ -50,6 +50,17 @@ const Header = () => {
               />
             </svg>
           </NavLink>
+
+          {/* Auth buttons */}
+          <NavLink to="/login" className={linkClass}>
+            Log in
+          </NavLink>
+          <Link
+            to="/signup"
+            className="rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-ice transition hover:bg-brand-700 active:scale-95"
+          >
+            Sign up
+          </Link>
         </nav>
       </div>
     </header>

@@ -26,4 +26,4 @@ a plain `rating` number and returns `{ products: [...] }`.
       context/ProductContext   products + loading (cart logic removed; buttons are text only)
       layout/RootLayout        Header + Outlet + Footer
       components/common/       Header, Footer, ProductCard (no JS responsive logic; Tailwind classes only), Lightfall (WebGL hero animation from reactbits.dev)
-      pages/                   Home, Shop, ProductDetails, Cart, About, Contact
+      pages/                   Home, Shop, ProductDetails, Cart, About, Contact, Login, Signup (UI only)
