@@ -1,4 +1,4 @@
-# MyStore (p-commerce)
+# Verdora (p-commerce)
 
 React + React Router DOM + Tailwind CSS v4 + Context API, using the FakeStore API.
 

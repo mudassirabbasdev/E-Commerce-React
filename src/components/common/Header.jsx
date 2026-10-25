@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import { useCart } from '../../context/CartContext'
 
 const links = [
   { to: '/', label: 'Home', end: true },
@@ -9,6 +10,7 @@ const links = [
 ]
 
 const Header = () => {
+  const { count } = useCart()
   // NavLink gives us { isActive }: true when the link matches the current URL
   const linkClass = ({ isActive }) =>
     `text-sm font-medium transition-colors hover:text-[#4a8f78] ${
@@ -22,8 +24,11 @@ const Header = () => {
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-y-2 px-4 py-4 sm:px-6 lg:px-8">
 
         {/* Left: logo */}
-        <Link to="/" className="text-xl font-bold tracking-tight text-[#4a8f78]">
-          MyStore
+        <Link to="/" className="flex flex-row text-center items-center gap-2 text-xl font-bold tracking-tight text-[#4a8f78]">
+          <img src="/verdora-mark.svg" alt="" className="h-8 w-8" />
+          <span>
+            <span className="text-white">Verd</span>ora
+          </span>
         </Link>
 
         {/* Right: links + cart (wraps onto a second line on small screens) */}
@@ -47,7 +52,12 @@ const Header = () => {
             Sign up
           </Link>
 
-          <NavLink to="/cart" aria-label="Cart" className="rounded-lg bg-[#60cfaa] px-4 py-2 text-sm font-semibold  transition hover:bg-white active:scale-95">
+          <NavLink to="/cart" aria-label="Cart" className="relative rounded-lg bg-[#60cfaa] px-4 py-2 text-sm font-semibold  transition hover:bg-white active:scale-95">
+            {count > 0 && (
+              <span className="absolute -right-2 -top-2 flex h-5 min-w-5 items-center justify-center rounded-full bg-white px-1 text-[11px] font-bold text-black ring-2 ring-black">
+                {count}
+              </span>
+            )}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

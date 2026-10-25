@@ -9,9 +9,10 @@ const Footer = () => {
 
         {/* Brand */}
         <div>
-          <Link to="/" className="inline-block">
+          <Link to="/" className="inline-flex items-center gap-3">
+            <img src="/verdora-mark.svg" alt="" className="h-10 w-10" />
             <h3 className="text-2xl font-bold tracking-tight text-white transition hover:text-[#8fc4ad]">
-              My<span className="text-[#4a8f78]">Store</span>
+              Verd<span className="text-[#4a8f78]">ora</span>
             </h3>
           </Link>
 
@@ -73,10 +74,10 @@ const Footer = () => {
             <li className="flex items-start gap-3">
               <span className="text-[#8fc4ad]">✉</span>
               <a
-                href="mailto:support@mystore.com"
+                href="mailto:support@verdora.com"
                 className="transition hover:text-[#8fc4ad]"
               >
-                support@mystore.com
+                support@verdora.com
               </a>
             </li>
 
@@ -105,7 +106,7 @@ const Footer = () => {
 
           <p>
             © {new Date().getFullYear()}{' '}
-            <span className="font-semibold text-[#8fc4ad]">MyStore</span>.
+            <span className="font-semibold text-[#8fc4ad]">Verdora</span>.
             All rights reserved.
           </p>
 

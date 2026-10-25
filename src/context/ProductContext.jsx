@@ -11,6 +11,7 @@ export const ProductProvider = ({ children }) => {
     const getProducts = async () => {
       try {
         const res = await fetch(`${API_URL}/products`)
+        if (!res.ok) throw new Error(`Request failed: ${res.status}`)
         const data = await res.json()
         setProducts(data)                 // FakeStore returns a plain array
       } catch (error) {

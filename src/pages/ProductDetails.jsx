@@ -2,10 +2,12 @@
 import React, { useContext } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { ProductContext } from '../context/ProductContext'
+import { useCart } from '../context/CartContext'
 
 const ProductDetails = () => {
   const { id } = useParams()
   const { products, loading } = useContext(ProductContext)
+  const { addToCart } = useCart()
 
   // 1. Products are still being fetched by the provider
   if (loading) {
@@ -83,6 +85,7 @@ const ProductDetails = () => {
           </p>
 
           <button
+            onClick={() => addToCart(product)}
             className="mt-8 w-full rounded-lg bg-[#4a8f78] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#163d33] active:scale-95"
           >
             Add to Cart

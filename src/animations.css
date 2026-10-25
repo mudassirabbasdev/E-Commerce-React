@@ -108,3 +108,12 @@ main section.isolate a[href="/shop"]:hover { animation-play-state: paused; }
   background: #4a8f78; border-radius: 9999px; transform-origin: center;
   animation: anim-line .8s .6s ease-out backwards;
 }
+
+/* ---------- Refinements ---------- */
+/* Visible keyboard focus in the brand colour */
+:focus-visible { outline: 2px solid #4a8f78; outline-offset: 3px; border-radius: 6px; }
+::selection { background: #60cfaa; color: #000; }
+
+/* Cart badge bounces in */
+@keyframes anim-badge { 0% { transform: scale(0); } 70% { transform: scale(1.25); } 100% { transform: scale(1); } }
+header a[aria-label="Cart"] > span { animation: anim-badge .4s ease; }

@@ -18,7 +18,7 @@ const values = [
 ]
 
 const story = [
-  { year: '2019', title: 'The idea', text: 'MyStore began as a small online shop with a handful of products.' },
+  { year: '2019', title: 'The idea', text: 'Verdora began as a small online shop with a handful of products.' },
   { year: '2021', title: 'Growing fast', text: 'We passed 5,000 orders and opened a dedicated support team.' },
   { year: '2023', title: 'Nationwide delivery', text: 'Faster shipping partners now bring orders to every major city.' },
   { year: 'Today', title: '10K+ customers', text: 'Hundreds of products, trusted brands and a community that keeps growing.' },
@@ -53,7 +53,7 @@ const About = () => {
           />
 
           <p className="mx-auto mt-6 max-w-xl text-base text-black sm:text-lg">
-            MyStore started with one idea: great products should be easy to find,
+            Verdora started with one idea: great products should be easy to find,
             fairly priced and delivered fast. Today we serve thousands of customers
             and keep improving every day.
           </p>
@@ -151,7 +151,7 @@ const About = () => {
       <section>
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-sm font-semibold uppercase tracking-widest text-[#4a8f78]">
-            The people behind MyStore
+            The people behind Verdora
           </p>
           <AnimatedText
             as="h2"

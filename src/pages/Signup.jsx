@@ -42,7 +42,7 @@ const Signup = () => {
     <section className="mx-auto max-w-md py-8">
       <div className="text-center">
         <p className="text-sm font-semibold uppercase tracking-widest text-[#4a8f78]">
-          Join MyStore
+          Join Verdora
         </p>
 
         <h1 className="mt-3 text-3xl font-bold tracking-tight text-[#163d33]">
@@ -50,7 +50,7 @@ const Signup = () => {
         </h1>
 
         <p className="mt-2 text-sm text-[#163d33]/70">
-          Join MyStore in less than a minute.
+          Join Verdora in less than a minute.
         </p>
       </div>
 

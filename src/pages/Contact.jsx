@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import AnimatedText from '../components/common/AnimatedText'
 
 const info = [
-  { label: 'Email', value: 'support@mystore.com' },
+  { label: 'Email', value: 'support@verdora.com' },
   { label: 'Phone', value: '+92 300 0000000' },
   { label: 'Address', value: 'Karachi, Pakistan' },
 ]

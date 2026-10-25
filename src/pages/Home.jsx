@@ -39,7 +39,7 @@ const Home = () => {
           <AnimatedText
             as="h1"
             text="Find everything you love in one place"
-            className="mx-auto mt-4 max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl"
+            className="mx-auto  mt-4 max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl"
             delay={0.2}
           />
           <p className="mx-auto mt-6 max-w-xl text-base text-black sm:text-lg">
