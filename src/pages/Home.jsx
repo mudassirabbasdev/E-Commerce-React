@@ -7,6 +7,11 @@ import AnimatedText from '../components/common/AnimatedText'
 import SpecularButton from '../components/animations/SpecularButton'
 import MaskedHeading from '../components/animations/MaskedHeading'
 import CircularCarousel from '../components/animations/CircularCarousel'
+import deliveryCard from '../assets/img/delivery-card.jpg'
+import secureCard from '../assets/img/secure-card.jpg'
+import cartHero from '../assets/img/cart-hero.jpg'
+import supportCard from '../assets/img/support-card.jpg'
+import mallBg from '../assets/img/mall-bg.jpg'
 
 
 // Plain data array: we map over it below to avoid repeating the same JSX 3 times
@@ -245,116 +250,63 @@ const Home = () => {
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
 
           {/* Benefit 1 */}
-          <div className="rounded-xl border border-[#4a8f78]/15 bg-white p-6 text-center transition duration-300 hover:-translate-y-1 hover:shadow-lg">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#4a8f78]/10 text-[#4a8f78]">
-              <svg
-                className="h-7 w-7"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={1.7}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3 7h11v10H3zM14 10h4l3 3v4h-7zM7 20a2 2 0 100-4 2 2 0 000 4zM17 20a2 2 0 100-4 2 2 0 000 4z"
-                />
-              </svg>
-            </div>
+          <div className="rounded-xl border border-[#4a8f78]/15 bg-white overflow-hidden text-center transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <img src={deliveryCard} alt="Fast Delivery" className="h-40 w-full object-cover" />
+            <div className="p-6">
 
-            <h3 className="mt-5 font-semibold text-[#163d33]">
+            <h3 className="font-semibold text-[#163d33]">
               Fast Delivery
             </h3>
 
             <p className="mt-2 text-sm leading-6 text-gray-600">
               Get your favorite products delivered to your doorstep.
             </p>
+            </div>
           </div>
 
           {/* Benefit 2 */}
-          <div className="rounded-xl border border-[#4a8f78]/15 bg-white p-6 text-center transition duration-300 hover:-translate-y-1 hover:shadow-lg">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#4a8f78]/10 text-[#4a8f78]">
-              <svg
-                className="h-7 w-7"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={1.7}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="m9 12 2 2 4-4"
-                />
-              </svg>
-            </div>
+          <div className="rounded-xl border border-[#4a8f78]/15 bg-white overflow-hidden text-center transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <img src={secureCard} alt="Secure Shopping" className="h-40 w-full object-cover" />
+            <div className="p-6">
 
-            <h3 className="mt-5 font-semibold text-[#163d33]">
+            <h3 className="font-semibold text-[#163d33]">
               Secure Shopping
             </h3>
 
             <p className="mt-2 text-sm leading-6 text-gray-600">
               Shop confidently with a checkout experience designed for security.
             </p>
+            </div>
           </div>
 
           {/* Benefit 3 */}
-          <div className="rounded-xl border border-[#4a8f78]/15 bg-white p-6 text-center transition duration-300 hover:-translate-y-1 hover:shadow-lg">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#4a8f78]/10 text-[#4a8f78]">
-              <svg
-                className="h-7 w-7"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={1.7}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4 4v6h6M4.5 10a8 8 0 111.8 7.8M4 10l4-4"
-                />
-              </svg>
-            </div>
+          <div className="rounded-xl border border-[#4a8f78]/15 bg-white overflow-hidden text-center transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <img src={cartHero} alt="Easy Returns" className="h-40 w-full object-cover" />
+            <div className="p-6">
 
-            <h3 className="mt-5 font-semibold text-[#163d33]">
+            <h3 className="font-semibold text-[#163d33]">
               Easy Returns
             </h3>
 
             <p className="mt-2 text-sm leading-6 text-gray-600">
               Enjoy a straightforward return process according to our policy.
             </p>
+            </div>
           </div>
 
           {/* Benefit 4 */}
-          <div className="rounded-xl border border-[#4a8f78]/15 bg-white p-6 text-center transition duration-300 hover:-translate-y-1 hover:shadow-lg">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#4a8f78]/10 text-[#4a8f78]">
-              <svg
-                className="h-7 w-7"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={1.7}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 3a7 7 0 00-7 7v4a3 3 0 003 3h1v-6H8a3 3 0 00-3 3m14-4a7 7 0 00-14 0m14 4a3 3 0 01-3 3h-1v-6h1a3 3 0 013 3zm-7 7h3"
-                />
-              </svg>
-            </div>
+          <div className="rounded-xl border border-[#4a8f78]/15 bg-white overflow-hidden text-center transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <img src={supportCard} alt="Customer Support" className="h-40 w-full object-cover" />
+            <div className="p-6">
 
-            <h3 className="mt-5 font-semibold text-[#163d33]">
+            <h3 className="font-semibold text-[#163d33]">
               Customer Support
             </h3>
 
             <p className="mt-2 text-sm leading-6 text-gray-600">
               We're here to help with your questions and orders.
             </p>
+            </div>
           </div>
 
         </div>  
@@ -388,6 +340,7 @@ const Home = () => {
                 review:
                   'Amazing quality and fast delivery. The whole shopping experience was smooth and easy.',
                 initials: 'AK',
+                photo: 'https://randomuser.me/api/portraits/men/32.jpg',
               },
               {
                 name: 'Fatima Ali',
@@ -395,6 +348,7 @@ const Home = () => {
                 review:
                   'The products were exactly as described, and the prices were reasonable. Highly recommended!',
                 initials: 'FA',
+                photo: 'https://randomuser.me/api/portraits/women/44.jpg',
               },
               {
                 name: 'Usman Malik',
@@ -402,6 +356,7 @@ const Home = () => {
                 review:
                   'Excellent customer service and a great selection of products. I will definitely shop here again.',
                 initials: 'UM',
+                photo: 'https://randomuser.me/api/portraits/men/45.jpg',
               },
             ].map((review) => (
               <div
@@ -423,8 +378,9 @@ const Home = () => {
 
                 {/* Customer Info */}
                 <div className="mt-6 flex items-center gap-3 border-t border-[#8fc4ad]/40 pt-5">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#163d33] text-sm font-bold text-[#8fc4ad]">
+                  <div className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-[#163d33] text-sm font-bold text-[#8fc4ad]">
                     {review.initials}
+                    <img src={review.photo} alt="" loading="lazy" onError={(e) => { e.currentTarget.style.display = 'none' }} className="absolute inset-0 h-full w-full object-cover" />
                   </div>
 
                   <div>
@@ -460,7 +416,11 @@ const Home = () => {
         </section>
 
       {/* Newsletter */}
-      <section className="rounded-2xl bg-black px-6 py-12 text-center sm:px-10">
+      <section
+        className="relative isolate overflow-hidden rounded-2xl bg-black bg-cover bg-center px-6 py-12 text-center sm:px-10"
+        style={{ backgroundImage: `url(${mallBg})` }}
+      >
+        <div className="absolute inset-0 -z-10 bg-black/70" />
         <AnimatedText
           as="h2"
           text="Get 10% off your first order"

@@ -4,6 +4,7 @@ import ProductCard from '../components/common/ProductCard'
 import { ProductContext } from '../context/ProductContext'
 import AnimatedText from '../components/common/AnimatedText'
 import { Link } from 'react-router-dom'
+import shopHero from '../assets/img/shop-hero.jpg'
 
 const Shop = () => {
   const { products, loading } = useContext(ProductContext)
@@ -58,7 +59,11 @@ const Shop = () => {
     <section className="pb-12">
 
       {/* Hero Section - Always Visible */}
-      <div className="relative isolate mb-10 overflow-hidden rounded-2xl bg-gradient-to-r from-[#102c25] via-[#163d33] to-[#4a8f78] px-6 py-16 text-center sm:px-12 sm:py-24">
+      <div
+        className="relative isolate mb-10 overflow-hidden rounded-2xl bg-cover bg-center px-6 py-16 text-center sm:px-12 sm:py-24"
+        style={{ backgroundImage: `url(${shopHero})` }}
+      >
+        <div className="absolute inset-0 -z-10 bg-black/55" />
         <div className="absolute -right-16 -top-16 -z-10 h-64 w-64 rounded-full bg-[#8fc4ad]/20 blur-3xl" />
         <div className="absolute -bottom-20 -left-16 -z-10 h-64 w-64 rounded-full bg-[#8fc4ad]/20 blur-3xl" />
 

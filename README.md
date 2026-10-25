@@ -35,3 +35,8 @@ CSS for all four is at the bottom of `src/utility/animations.css`. Components: `
 - CircularCarousel: Home "Trending Now"
 - FlipCard (needs `motion`): About "What we stand for"
 Run `npm install` after unzipping (gsap and motion were added to package.json).
+
+## Photos
+Optimised copies live in `src/assets/img/` (your originals are still in `src/assets/`; you can delete them to shrink the project).
+about-hero, shop-hero, cart-hero, contact-hero (page banners) | login-bg, signup-bg (side photo) | team-bg (Meet Our Team) |
+quality/pricing/care-card (About flip cards) | delivery/secure/support-card + cart-hero (Home benefits) | mall-bg (Home newsletter)

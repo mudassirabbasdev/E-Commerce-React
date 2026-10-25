@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react'
 import AnimatedText from '../components/common/AnimatedText'
+import contactHero from '../assets/img/contact-hero.jpg'
 
 const info = [
   { label: 'Email', value: 'support@verdora.com' },
@@ -44,21 +45,27 @@ const Contact = () => {
   return (
     <section>
       {/* Heading */}
-      <div className="mx-auto max-w-2xl text-center">
-        <p className="text-eyebrow text-sm font-semibold uppercase tracking-widest text-[#4a8f78]">
+      <div
+        className="relative isolate overflow-hidden rounded-2xl bg-cover bg-center px-6 py-16 text-center sm:px-12 sm:py-20"
+        style={{ backgroundImage: `url(${contactHero})` }}
+      >
+        <div className="absolute inset-0 -z-10 bg-black/65" />
+        <div className="mx-auto max-w-2xl">
+        <p className="text-eyebrow text-sm font-semibold uppercase tracking-widest text-[#8fc4ad]">
           Get in touch
         </p>
 
         <AnimatedText
           as="h1"
           text="Contact us"
-          className="mt-3 text-4xl font-extrabold tracking-tight text-[#163d33]"
+          className="mt-3 text-4xl font-extrabold tracking-tight text-white"
           delay={0.2}
         />
 
-        <p style={{ '--t': '0.5s' }} className="text-animate mt-4 leading-7 text-[#163d33]/70">
+        <p style={{ '--t': '0.5s' }} className="text-animate mt-4 leading-7 text-white/85">
           Have a question? Send us a message and we'll reply within one business day.
         </p>
+        </div>
       </div>
 
       <div className="mt-12 grid gap-8 lg:grid-cols-3">

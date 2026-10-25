@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import signupBg from '../assets/img/signup-bg.jpg'
 
 const inputClass =
   'mt-1 w-full rounded-lg border border-[#8fc4ad]/50 bg-[#f8f7f2] px-4 py-2.5 text-sm text-[#163d33] placeholder-[#163d33]/40 outline-none transition focus:border-[#4a8f78] focus:ring-2 focus:ring-[#8fc4ad]/50'
@@ -39,7 +40,20 @@ const Signup = () => {
   }
 
   return (
-    <section className="mx-auto max-w-md py-8">
+    <section className="mx-auto grid max-w-5xl overflow-hidden rounded-2xl border border-[#8fc4ad]/40 bg-white shadow-lg lg:grid-cols-2">
+      {/* Photo side */}
+      <div className="relative hidden min-h-[560px] lg:block">
+        <img src={signupBg} alt="" className="absolute inset-0 h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/25 to-black/10" />
+        <div className="absolute inset-x-0 bottom-0 p-8 text-white">
+          <p className="text-sm font-semibold uppercase tracking-widest text-[#8fc4ad]">Verdora</p>
+          <p className="mt-2 text-2xl font-bold">Welcome to the family</p>
+          <p className="mt-1 text-sm text-white/80">Create an account and start shopping in a minute.</p>
+        </div>
+      </div>
+
+      {/* Form side */}
+      <div className="flex flex-col justify-center p-8 sm:p-10">
       <div className="text-center">
         <p className="text-sm font-semibold uppercase tracking-widest text-[#4a8f78]">
           Join Verdora
@@ -56,7 +70,7 @@ const Signup = () => {
 
       <form
         onSubmit={handleSubmit}
-        className="mt-8 space-y-5 rounded-xl border border-[#8fc4ad]/40 bg-white p-6 shadow-sm"
+        className="mt-8 space-y-5"
       >
         {error && (
           <div className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm font-medium text-red-700">
@@ -169,6 +183,7 @@ const Signup = () => {
           </Link>
         </p>
       </form>
+      </div>
     </section>
   )
 }

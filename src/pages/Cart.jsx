@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
+import cartHero from '../assets/img/cart-hero.jpg'
 
 const FREE_SHIPPING_FROM = 50
 const SHIPPING_FEE = 5
@@ -8,9 +9,23 @@ const SHIPPING_FEE = 5
 const Cart = () => {
   const { items, subtotal, changeQty, removeItem, clearCart } = useCart()
 
+  // Banner shown on top of both the empty and the filled cart
+  const banner = (
+    <div
+      className="relative isolate mb-8 overflow-hidden rounded-2xl bg-cover bg-center px-6 py-14 text-center sm:px-12"
+      style={{ backgroundImage: `url(${cartHero})` }}
+    >
+      <div className="absolute inset-0 -z-10 bg-black/55" />
+      <p className="text-sm font-semibold uppercase tracking-widest text-[#8fc4ad]">Review your order</p>
+      <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-white sm:text-5xl">Your Cart</h1>
+    </div>
+  )
+
   if (items.length === 0) {
     return (
-      <div className="flex min-h-[50vh] flex-col items-center justify-center text-center">
+      <>
+      {banner}
+      <div className="flex min-h-[40vh] flex-col items-center justify-center text-center">
         <div className="flex h-20 w-20 items-center justify-center rounded-full bg-[#8fc4ad]/25 text-[#4a8f78]">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -41,6 +56,7 @@ const Cart = () => {
           Start Shopping
         </Link>
       </div>
+      </>
     )
   }
 
@@ -50,8 +66,9 @@ const Cart = () => {
 
   return (
     <div>
+      {banner}
       <div className="mb-6 flex items-end justify-between">
-        <h1 className="text-3xl font-bold tracking-tight text-[#163d33]">Your Cart</h1>
+        <h2 className="text-2xl font-bold tracking-tight text-[#163d33]">Items ({items.length})</h2>
         <button
           onClick={clearCart}
           className="text-sm font-medium text-[#163d33]/60 transition hover:text-red-600"
