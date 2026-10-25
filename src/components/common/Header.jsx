@@ -20,11 +20,11 @@ const Header = () => {
     }`
 
   return (
-    <header className="sticky top-3 z-50 m-6 rounded-full  border-b border-gray-200 bg-black backdrop-blur">
+    <header className="fixed inset-x-0 top-3 z-50 mx-6 rounded-full bg-black backdrop-blur">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-y-2 px-4 py-4 sm:px-6 lg:px-8">
 
         {/* Left: logo */}
-        <Link to="/" className="flex flex-row text-center items-center gap-2 text-xl font-bold tracking-tight text-[#4a8f78]">
+        <Link to="/" className="flex items-center gap-2 whitespace-nowrap text-xl font-bold tracking-tight text-[#4a8f78]">
           <img src="/verdora-mark.svg" alt="" className="h-8 w-8" />
           <span>
             <span className="text-white">Verd</span>ora

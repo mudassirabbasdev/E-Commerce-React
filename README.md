@@ -27,3 +27,11 @@ a plain `rating` number and returns `{ products: [...] }`.
       layout/RootLayout        Header + Outlet + Footer
       components/common/       Header, Footer, ProductCard (no JS responsive logic; Tailwind classes only), Lightfall (WebGL hero animation from reactbits.dev)
       pages/                   Home, Shop, ProductDetails, Cart, About, Contact, Login, Signup (UI only)
+
+## React Bits animations
+CSS for all four is at the bottom of `src/utility/animations.css`. Components: `src/components/animations/`.
+- MaskedHeading (needs `gsap`): Home hero title, image `public/hero-mask.svg`
+- SpecularButton (WebGL2): hero buttons on Home and About
+- CircularCarousel: Home "Trending Now"
+- FlipCard (needs `motion`): About "What we stand for"
+Run `npm install` after unzipping (gsap and motion were added to package.json).

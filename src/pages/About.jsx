@@ -1,8 +1,10 @@
 
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import AnimatedText from '../components/common/AnimatedText'
 import hero from '../assets/hero.png'
+import SpecularButton from '../components/animations/SpecularButton'
+import FlipCard from '../components/animations/FlipCard'
 
 const stats = [
   { value: '10K+', label: 'Happy customers' },
@@ -12,9 +14,9 @@ const stats = [
 ]
 
 const values = [
-  { title: 'Quality First', text: 'Every product is checked before it reaches you.' },
-  { title: 'Fair Pricing', text: 'Honest prices with no hidden fees.' },
-  { title: 'Customer Care', text: 'A friendly team ready to help whenever you need.' },
+  { title: 'Quality First', text: 'Every product is checked before it reaches you.', more: 'We inspect each item, work only with trusted brands and remove anything that does not meet our standard.' },
+  { title: 'Fair Pricing', text: 'Honest prices with no hidden fees.', more: 'What you see is what you pay. No surprise shipping charges and no inflated "before" prices.' },
+  { title: 'Customer Care', text: 'A friendly team ready to help whenever you need.', more: 'Real people answer within hours, every day. Returns are free for 30 days.' },
 ]
 
 const story = [
@@ -32,15 +34,16 @@ const team = [
 ]
 
 const About = () => {
+  const navigate = useNavigate()
   return (
     <div className="space-y-16">
 
       {/* Hero (same style as the Home hero) */}
       <section
-        className="relative isolate overflow-hidden rounded-2xl bg-cover bg-center bg-no-repeat text-center"
+        className="relative isolate -mt-32 ml-[calc(50%-50vw)] flex min-h-screen w-screen items-center justify-center overflow-hidden bg-cover bg-center bg-no-repeat text-center"
         style={{ backgroundImage: `url(${hero})` }}
       >
-        <div className="px-6 py-16 sm:px-12 sm:py-24">
+        <div className="w-full px-6 pt-28 pb-16 sm:px-12">
           <p className="text-sm font-semibold uppercase tracking-widest text-black">
             About us
           </p>
@@ -58,19 +61,31 @@ const About = () => {
             and keep improving every day.
           </p>
 
-          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link
-              to="/shop"
-              className="w-full rounded-lg border border-ice/60 bg-black px-8 py-3 text-sm font-semibold text-[#4a8f78] shadow transition hover:bg-white hover:text-black sm:w-auto"
-            >
-              Shop Now
-            </Link>
-            <Link
-              to="/contact"
-              className="w-full rounded-lg border border-ice/60 bg-black px-8 py-3 text-sm font-semibold text-[#4a8f78] transition hover:bg-white hover:text-black sm:w-auto"
-            >
-              Contact Us
-            </Link>
+          <div className="mt-10 flex items-center justify-center gap-5">
+          <SpecularButton
+            size="md"
+            radius={14}
+            tint="#000000"
+            tintOpacity={0.85}
+            textColor="#60cfaa"
+            lineColor="#60cfaa"
+            baseColor="#4a8f78"
+            onClick={() => navigate('/shop')}
+          >
+            Shop Now
+          </SpecularButton>
+          <SpecularButton
+            size="md"
+            radius={14}
+            tint="#000000"
+            tintOpacity={0.85}
+            textColor="#60cfaa"
+            lineColor="#60cfaa"
+            baseColor="#4a8f78"
+            onClick={() => navigate('/contact')}
+          >
+            Contact Us
+          </SpecularButton>
           </div>
         </div>
       </section>
@@ -100,20 +115,30 @@ const About = () => {
           className="anim-underline text-center text-2xl font-bold tracking-tight text-[#163d33]"
         />
 
-        <div className="mt-8 grid gap-6 md:grid-cols-3">
+        <p className="mt-2 text-center text-sm text-[#163d33]/70">Click or drag a card to flip it</p>
+        <div className="mt-8 grid justify-items-center gap-8 md:grid-cols-3">
           {values.map((v) => (
-            <div
+            <FlipCard
               key={v.title}
-              className="rounded-xl border border-[#8fc4ad]/40 bg-[#f8f7f2] p-6 shadow-sm transition hover:border-[#4a8f78] hover:shadow-md"
-            >
-              <h3 className="font-semibold text-[#163d33]">
-                {v.title}
-              </h3>
-
-              <p className="mt-2 text-sm leading-6 text-[#163d33]/70">
-                {v.text}
-              </p>
-            </div>
+              width={300}
+              height={220}
+              background="#163d33"
+              color="#f8f7f2"
+              shadowColor="#102c25"
+              shadowOpacity={0.3}
+              ariaLabel={`${v.title} - flip card`}
+              front={
+                <div className="flex h-full flex-col items-center justify-center gap-3 bg-[#163d33] p-6 text-center">
+                  <h3 className="text-xl font-bold text-[#8fc4ad]">{v.title}</h3>
+                  <p className="text-sm text-[#f8f7f2]/80">{v.text}</p>
+                </div>
+              }
+              back={
+                <div className="flex h-full items-center justify-center bg-[#f8f7f2] p-6 text-center text-sm leading-6 text-[#163d33]">
+                  {v.more}
+                </div>
+              }
+            />
           ))}
         </div>
       </section>

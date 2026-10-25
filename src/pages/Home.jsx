@@ -1,9 +1,12 @@
 import React, { useContext, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import ProductCard from '../components/common/ProductCard'
 import { ProductContext } from '../context/ProductContext'
 import hero from '../assets/hero.png'
 import AnimatedText from '../components/common/AnimatedText'
+import SpecularButton from '../components/animations/SpecularButton'
+import MaskedHeading from '../components/animations/MaskedHeading'
+import CircularCarousel from '../components/animations/CircularCarousel'
 
 
 // Plain data array: we map over it below to avoid repeating the same JSX 3 times
@@ -15,9 +18,19 @@ const features = [
 
 const Home = () => {
   const { products, loading } = useContext(ProductContext)
+  const navigate = useNavigate()
 
   // First 4 products only
   const featured = products.slice(0, 4)
+
+  // Carousel items: { src, alt, title, subtitle }
+  const slides = (Array.isArray(products) ? products : []).slice(0, 10).map((p) => ({
+    id: p.id,
+    src: p.image,
+    alt: p.title,
+    title: p.title.length > 38 ? p.title.slice(0, 38) + '…' : p.title,
+    subtitle: p.category,
+  }))
 
   // Shop-by-category tiles built from the loaded products
   const categories = [...new Set((Array.isArray(products) ? products : []).map((p) => p.category))]
@@ -28,36 +41,56 @@ const Home = () => {
     <div className="space-y-16">
 
       {/* 1. Hero (Lightfall animation sits behind the text) */}
-      <section className="relative isolate overflow-hidden rounded-2xl bg-cover bg-center bg-no-repeat text-center"
+      <section className="relative isolate -mt-32 ml-[calc(50%-50vw)] flex min-h-screen w-screen items-center justify-center overflow-hidden bg-cover bg-center bg-no-repeat text-center"
         style={{ backgroundImage: `url(${hero})` }}>
 
         {/* Content layer */}
-        <div className="px-6 py-16 sm:px-12 sm:py-24">
+        <div className="w-full px-6 pt-28 pb-16 sm:px-12">
           <p className="text-sm font-semibold uppercase tracking-widest text-black">
             New Season Collection
           </p>
-          <AnimatedText
-            as="h1"
-            text="Find everything you love in one place"
-            className="mx-auto  mt-4 max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl"
-            delay={0.2}
-          />
+          {/* MaskedHeading: the image shows through the letters */}
+          <div className="mx-auto mt-4 max-w-4xl">
+            <MaskedHeading
+              tag="h1"
+              text="Find everything you love in one place"
+              src="/hero-mask.svg"
+              reveal="rise"
+              trigger="mount"
+              weight={800}
+              textScale={0.085}
+              drift={14}
+              hoverZoom={0.08}
+            />
+          </div>
           <p className="mx-auto mt-6 max-w-xl text-base text-black sm:text-lg">
             Discover quality products at fair prices, delivered fast to your door.
           </p>
-          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link
-              to="/shop"
-              className="w-full rounded-lg border border-ice/60 bg-black px-8 py-3 text-sm font-semibold text-[#4a8f78] shadow transition hover:bg-white hover:text-black sm:w-auto"
+          <div className="mt-10 flex items-center justify-center gap-5">
+            <SpecularButton
+              size="md"
+              radius={14}
+              tint="#000000"
+              tintOpacity={0.85}
+              textColor="#60cfaa"
+              lineColor="#60cfaa"
+              baseColor="#4a8f78"
+              onClick={() => navigate('/shop')}
             >
               Shop Now
-            </Link>
-            <Link
-              to="/about"
-              className="w-full rounded-lg border border-ice/60 bg-black px-8 py-3 text-sm font-semibold text-[#4a8f78] transition hover:bg-white hover:text-black sm:w-auto"
+            </SpecularButton>
+            <SpecularButton
+              size="md"
+              radius={14}
+              tint="#000000"
+              tintOpacity={0.85}
+              textColor="#60cfaa"
+              lineColor="#60cfaa"
+              baseColor="#4a8f78"
+              onClick={() => navigate('/about')}
             >
               Learn More
-            </Link>
+            </SpecularButton>
           </div>
         </div>
       </section>
@@ -130,6 +163,31 @@ const Home = () => {
           </div>
         )}
       </section>
+
+
+      {/* Trending carousel (drag to spin, click a card to open the product) */}
+      {slides.length >= 3 && (
+        <section>
+          <div className="mb-2 text-center">
+            <p className="text-sm font-semibold uppercase tracking-widest text-[#4a8f78]">Spin it</p>
+            <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-[#163d33]">Trending Now</h2>
+          </div>
+          <div className="relative h-[480px] w-full">
+            <CircularCarousel
+              items={slides}
+              preset="cylinder"
+              intro="rise"
+              cardWidth={190}
+              aspectRatio={0.8}
+              speed={10}
+              captions
+              fadeColor="#dadce7"
+              cornerRadius={14}
+              onItemClick={(item) => navigate(`/product/${item.id}`)}
+            />
+          </div>
+        </section>
+      )}
 
 
       {/* Shop by category */}
