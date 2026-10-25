@@ -422,7 +422,7 @@ const Home = () => {
       >
         <div className="absolute inset-0 -z-10 bg-black/70" />
         <AnimatedText
-          as="h2"
+          as="h2"g
           text="Get 10% off your first order"
           className="text-2xl font-bold text-white sm:text-3xl"
         />
