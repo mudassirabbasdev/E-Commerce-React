@@ -1,5 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { TbBrandGmail } from "react-icons/tb";
+import { FaPhoneVolume } from "react-icons/fa6";
+import { FaLocationDot } from "react-icons/fa6";
 
 const Footer = () => {
   return (
@@ -33,31 +36,31 @@ const Footer = () => {
 
           <ul className="mt-5 space-y-3 text-sm">
             <li>
-              <Link to="/" className="transition duration-200 hover:text-[#8fc4ad]">
+              <Link to="/" className="transition duration-200 hover:translate-x-1 hover:text-[#8fc4ad] relative inline-block after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-[#8fc4ad] after:transition-transform after:duration-300 hover:after:scale-x-100">
                 Home
               </Link>
             </li>
 
             <li>
-              <Link to="/shop" className="transition duration-200 hover:text-[#8fc4ad]">
+              <Link to="/shop" className="transition duration-200 hover:translate-x-1 hover:text-[#8fc4ad] relative inline-block after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-[#8fc4ad] after:transition-transform after:duration-300 hover:after:scale-x-100">
                 Shop
               </Link>
             </li>
 
             <li>
-              <Link to="/cart" className="transition duration-200 hover:text-[#8fc4ad]">
+              <Link to="/cart" className="transition duration-200 hover:translate-x-1 hover:text-[#8fc4ad] relative inline-block after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-[#8fc4ad] after:transition-transform after:duration-300 hover:after:scale-x-100">
                 Cart
               </Link>
             </li>
 
             <li>
-              <Link to="/about" className="transition duration-200 hover:text-[#8fc4ad]">
+              <Link to="/about" className="transition duration-200 hover:translate-x-1 hover:text-[#8fc4ad] relative inline-block after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-[#8fc4ad] after:transition-transform after:duration-300 hover:after:scale-x-100">
                 About Us
               </Link>
             </li>
 
             <li>
-              <Link to="/contact" className="transition duration-200 hover:text-[#8fc4ad]">
+              <Link to="/contact" className="transition duration-200 hover:translate-x-1 hover:text-[#8fc4ad] relative inline-block after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-[#8fc4ad] after:transition-transform after:duration-300 hover:after:scale-x-100">
                 Contact
               </Link>
             </li>
@@ -72,27 +75,27 @@ const Footer = () => {
 
           <ul className="mt-5 space-y-4 text-sm text-gray-300">
             <li className="flex items-start gap-3">
-              <span className="text-[#8fc4ad]">✉</span>
+              <span className="text-[#8fc4ad]"><TbBrandGmail /></span>
               <a
                 href="mailto:support@verdora.com"
-                className="transition hover:text-[#8fc4ad]"
+                className="transition hover:text-[#8fc4ad] relative inline-block after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-[#8fc4ad] after:transition-transform after:duration-300 hover:after:scale-x-100"
               >
                 support@verdora.com
               </a>
             </li>
 
             <li className="flex items-start gap-3">
-              <span className="text-[#8fc4ad]">☎</span>
+              <span className="text-[#8fc4ad]"><FaPhoneVolume /></span>
               <a
                 href="tel:+923000000000"
-                className="transition hover:text-[#8fc4ad]"
+                className="transition hover:text-[#8fc4ad] relative inline-block after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-[#8fc4ad] after:transition-transform after:duration-300 hover:after:scale-x-100"
               >
                 +92 300 0000000
               </a>
             </li>
 
             <li className="flex items-start gap-3">
-              <span className="text-[#8fc4ad]">⌖</span>
+              <span className="text-[#8fc4ad]"><FaLocationDot /></span>
               <span>Karachi, Pakistan</span>
             </li>
           </ul>
@@ -102,16 +105,12 @@ const Footer = () => {
 
       {/* Copyright Bar */}
       <div className="border-t border-white/10 bg-[#102c25]">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-5 text-xs text-gray-400 sm:flex-row sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-center gap-3 px-4 py-5 text-xs text-gray-400 sm:flex-row sm:px-6 lg:px-8">
 
           <p>
             © {new Date().getFullYear()}{' '}
             <span className="font-semibold text-[#8fc4ad]">Verdora</span>.
             All rights reserved.
-          </p>
-
-          <p className="tracking-wide">
-            Quality · Style · Trust
           </p>
 
         </div>

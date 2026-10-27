@@ -56,11 +56,11 @@ const Shop = () => {
     'w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm text-gray-900 outline-none transition focus:border-[#4a8f78] focus:ring-2 focus:ring-[#8fc4ad]'
 
   return (
-    <section className="pb-12">
+    <section className="pb-8">
 
       {/* Hero Section - Always Visible */}
       <div
-        className="relative isolate mb-10 overflow-hidden rounded-2xl bg-cover bg-center px-6 py-16 text-center sm:px-12 sm:py-24"
+        className="relative isolate mb-6 overflow-hidden rounded-2xl bg-cover bg-center px-6 py-16 text-center sm:px-12 sm:py-24"
         style={{ backgroundImage: `url(${shopHero})` }}
       >
         <div className="absolute inset-0 -z-10 bg-black/55" />
@@ -226,7 +226,7 @@ const Shop = () => {
       </div>
 
       {/* Shopping perks */}
-      <div className="mt-16 grid gap-4 sm:grid-cols-3">
+      <div className="mt-10 grid gap-4 sm:grid-cols-3">
         {[
           { title: 'Free Shipping', text: 'On all orders over $50' },
           { title: 'Secure Checkout', text: 'Your payment details stay protected' },
@@ -243,7 +243,7 @@ const Shop = () => {
       </div>
 
       {/* Need help banner */}
-      <div className="mt-10 rounded-2xl bg-[#163d33] px-6 py-12 text-center">
+      <div className="mt-6 rounded-2xl bg-[#163d33] px-6 py-10 text-center">
         <AnimatedText
           as="h2"
           text="Can't find what you're looking for?"

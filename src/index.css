@@ -53,3 +53,49 @@
   --color-ink:     #0f131f;     /* main text + footer background */
   --color-surface: #ffffff;     /* cards and header (set to #dadce7 for a fully palette-only look) */
 }
+
+/* ------------------------------------------------------------
+   Pointer cursor on everything clickable (Tailwind v4 resets
+   buttons to the default arrow, so we put it back here).
+   ------------------------------------------------------------ */
+@layer base {
+  button:not(:disabled),
+  [role="button"],
+  a[href],
+  select,
+  summary,
+  label[for],
+  input[type="submit"],
+  input[type="checkbox"],
+  input[type="radio"] {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  /* Cards: every <article> and every rounded, shadowed box that does not contain a form field */
+  article,
+  :is(div, li)[class*="rounded-xl"][class*="shadow"]:not(:has(input, textarea, select)),
+  :is(div, li)[class*="rounded-2xl"][class*="shadow"]:not(:has(input, textarea, select)),
+  :is(div, li)[class*="rounded-xl"][class*="ring-1"]:not(:has(input, textarea, select)) {
+    cursor: pointer;
+  }
+}
+
+/* ------------------------------------------------------------
+   SweetAlert2 pop-ups: match the site (font, corners, buttons)
+   ------------------------------------------------------------ */
+.verdora-swal,
+.verdora-toast {
+  font-family: inherit;
+  border-radius: 1rem;
+}
+.verdora-swal .swal2-title { color: #163d33; font-size: 1.4rem; font-weight: 700; }
+.verdora-swal .swal2-html-container { color: rgb(22 61 51 / 0.75); font-size: 0.95rem; }
+.verdora-swal-btn { border-radius: 0.6rem !important; font-weight: 600 !important; font-size: 0.9rem !important; }
+.verdora-toast { background: #0b0b0b !important; color: #f8f7f2 !important; }
+.verdora-toast .swal2-title { color: #fff !important; font-size: 0.9rem !important; font-weight: 600; }
+.verdora-toast .swal2-html-container { color: rgb(255 255 255 / 0.7) !important; font-size: 0.8rem !important; }
+.verdora-toast .swal2-timer-progress-bar { background: #60cfaa; }

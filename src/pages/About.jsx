@@ -40,7 +40,7 @@ const team = [
 const About = () => {
   const navigate = useNavigate()
   return (
-    <div className="space-y-16">
+    <div className="space-y-10">
 
       {/* Hero (same style as the Home hero) */}
       <section
@@ -165,7 +165,7 @@ const About = () => {
           />
         </div>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {story.map((item) => (
             <div
               key={item.year}
@@ -183,7 +183,7 @@ const About = () => {
 
       {/* Team */}
       <section
-        className="relative isolate overflow-hidden rounded-2xl bg-cover bg-center px-6 py-14 sm:px-10"
+        className="relative isolate overflow-hidden rounded-2xl bg-cover bg-center px-6 py-12 sm:px-10"
         style={{ backgroundImage: `url(${teamBg})` }}
       >
         <div className="absolute inset-0 -z-10 bg-[#0b2a22]/75" />
@@ -198,7 +198,7 @@ const About = () => {
           />
         </div>
 
-        <div className="mt-10 grid grid-cols-2 gap-6 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-2 gap-6 lg:grid-cols-4">
           {team.map((m) => (
             <div
               key={m.name}

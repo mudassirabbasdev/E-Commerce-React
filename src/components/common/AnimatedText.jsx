@@ -9,7 +9,7 @@ const AnimatedText = ({ text, as: Tag = 'span', className = '', delay = 0 }) => 
         <span
           key={i}
           aria-hidden="true"
-          className="inline-block overflow-hidden align-bottom"
+          className="inline-block overflow-hidden align-bottom pb-[0.22em] -mb-[0.22em]"
         >
           <span
             className="anim-word inline-block"

@@ -40,3 +40,14 @@ Run `npm install` after unzipping (gsap and motion were added to package.json).
 Optimised copies live in `src/assets/img/` (your originals are still in `src/assets/`; you can delete them to shrink the project).
 about-hero, shop-hero, cart-hero, contact-hero (page banners) | login-bg, signup-bg (side photo) | team-bg (Meet Our Team) |
 quality/pricing/care-card (About flip cards) | delivery/secure/support-card + cart-hero (Home benefits) | mall-bg (Home newsletter)
+
+## API backup
+If the API fails (offline, blocked, error, empty answer or no reply in 8 seconds), `ProductContext` shows the saved copy
+in `src/data/products.json` with the local images in `src/assets/products/`. To change the saved data, edit that JSON file
+(keep the image file names in sync with the files in `src/assets/products/`).
+
+## Pop-ups (SweetAlert2)
+All pop-ups are in one file: `src/utility/alerts.js` (helpers: toastSuccess, toastInfo, showSuccess, showError, confirmAction).
+Pages never import `sweetalert2` directly. Theme classes (`.verdora-swal`, `.verdora-toast`) are at the bottom of `src/index.css`.
+Used for: Add to cart (toast), remove item (toast), Clear cart (confirm), Checkout (confirm + success), Login / Sign up (success, validation errors),
+Contact (success), Newsletter (toast).

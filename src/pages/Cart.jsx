@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
 import cartHero from '../assets/img/cart-hero.jpg'
+import { confirmAction, showSuccess, toastInfo } from '../utility/alerts'
 
 const FREE_SHIPPING_FROM = 50
 const SHIPPING_FEE = 5
@@ -64,13 +65,42 @@ const Cart = () => {
   const total = subtotal + shipping
   const remaining = FREE_SHIPPING_FROM - subtotal
 
+  const handleClear = async () => {
+    const ok = await confirmAction({
+      title: 'Clear your cart?',
+      text: `All ${items.length} item(s) will be removed.`,
+      confirmText: 'Yes, clear it',
+    })
+    if (ok) {
+      clearCart()
+      toastInfo('Cart cleared')
+    }
+  }
+
+  const handleRemove = (item) => {
+    removeItem(item.id)
+    toastInfo('Removed from cart', item.title)
+  }
+
+  const handleCheckout = async () => {
+    const ok = await confirmAction({
+      icon: 'question',
+      title: 'Place your order?',
+      html: `<p>${items.length} item(s)</p><p style="margin-top:4px"><b>Total: $${total.toFixed(2)}</b></p>`,
+      confirmText: 'Place order',
+    })
+    if (!ok) return
+    clearCart()
+    showSuccess('Order placed!', 'Thank you for shopping with Verdora. (Demo only: no payment was taken.)')
+  }
+
   return (
     <div>
       {banner}
       <div className="mb-6 flex items-end justify-between">
         <h2 className="text-2xl font-bold tracking-tight text-[#163d33]">Items ({items.length})</h2>
         <button
-          onClick={clearCart}
+          onClick={handleClear}
           className="text-sm font-medium text-[#163d33]/60 transition hover:text-red-600"
         >
           Clear cart
@@ -127,7 +157,7 @@ const Cart = () => {
               </div>
 
               <button
-                onClick={() => removeItem(item.id)}
+                onClick={() => handleRemove(item)}
                 aria-label={`Remove ${item.title}`}
                 className="self-start text-xl leading-none text-[#163d33]/40 transition hover:text-red-600"
               >
@@ -162,7 +192,7 @@ const Cart = () => {
             </p>
           )}
 
-          <button className="mt-6 w-full rounded-lg bg-[#60cfaa] py-3 text-sm font-semibold text-black transition hover:bg-white active:scale-95">
+          <button onClick={handleCheckout} className="mt-6 w-full rounded-lg bg-[#60cfaa] py-3 text-sm font-semibold text-black transition hover:bg-white active:scale-95">
             Checkout
           </button>
           <Link

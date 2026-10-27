@@ -12,6 +12,7 @@ import secureCard from '../assets/img/secure-card.jpg'
 import cartHero from '../assets/img/cart-hero.jpg'
 import supportCard from '../assets/img/support-card.jpg'
 import mallBg from '../assets/img/mall-bg.jpg'
+import { toastSuccess } from '../utility/alerts'
 
 
 // Plain data array: we map over it below to avoid repeating the same JSX 3 times
@@ -40,10 +41,9 @@ const Home = () => {
   // Shop-by-category tiles built from the loaded products
   const categories = [...new Set((Array.isArray(products) ? products : []).map((p) => p.category))]
   const [email, setEmail] = useState('')
-  const [subscribed, setSubscribed] = useState(false)
 
   return (
-    <div className="space-y-16">
+    <div className="space-y-10">
 
       {/* 1. Hero (Lightfall animation sits behind the text) */}
       <section className="relative isolate -mt-32 ml-[calc(50%-50vw)] flex min-h-screen w-screen items-center justify-center overflow-hidden bg-cover bg-center bg-no-repeat text-center"
@@ -51,7 +51,7 @@ const Home = () => {
 
         {/* Content layer */}
         <div className="w-full px-6 pt-28 pb-16 sm:px-12">
-          <p className="text-sm font-semibold uppercase tracking-widest text-black">
+          <p className="text-sm font-semibold uppercase tracking-widest text-white">
             New Season Collection
           </p>
           {/* MaskedHeading: the image shows through the letters */}
@@ -68,7 +68,7 @@ const Home = () => {
               hoverZoom={0.08}
             />
           </div>
-          <p className="mx-auto mt-6 max-w-xl text-base text-black sm:text-lg">
+          <p className="mx-auto mt-6 max-w-xl text-base text-white sm:text-lg">
             Discover quality products at fair prices, delivered fast to your door.
           </p>
           <div className="mt-10 flex items-center justify-center gap-5">
@@ -229,10 +229,10 @@ const Home = () => {
 
 
       {/* Why Choose Us */}
-      <section className="rounded-2xl cursor-pointer bg-[#163d33] px-6 py-12 sm:px-10 sm:py-16">
+      <section className="rounded-2xl cursor-pointer bg-[#163d33] px-6 py-10 sm:px-10 sm:py-12">
 
         {/* Heading */}
-        <div className="mx-auto mb-12 max-w-2xl text-center">
+        <div className="mx-auto mb-8 max-w-2xl text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#8fc4ad]">
             The Store Difference
           </p>
@@ -315,7 +315,7 @@ const Home = () => {
 
 
       {/* Customer Reviews Section */}
-        <section className="py-12 sm:py-16">
+        <section>
           {/* Section Heading */}
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-sm font-semibold uppercase tracking-widest text-[#4a8f78]">
@@ -332,7 +332,7 @@ const Home = () => {
           </div>
 
           {/* Reviews Grid */}
-          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {[
               {
                 name: 'Ahmed Khan',
@@ -408,7 +408,7 @@ const Home = () => {
           </div>
 
           {/* Bottom Message */}
-          <div className="mt-10 text-center">
+          <div className="mt-6 text-center">
             <p className="text-sm text-[#163d33]/70">
               Your satisfaction is what motivates us to do better every day.
             </p>
@@ -422,22 +422,17 @@ const Home = () => {
       >
         <div className="absolute inset-0 -z-10 bg-black/70" />
         <AnimatedText
-          as="h2"g
+          as="h2"
           text="Get 10% off your first order"
           className="text-2xl font-bold text-white sm:text-3xl"
         />
         <p className="mx-auto mt-3 max-w-md text-sm text-gray-300">
           Join our newsletter for new arrivals, offers and shopping tips.
         </p>
-        {subscribed ? (
-          <p className="mt-6 font-semibold text-[#60cfaa]">
-            Thanks for subscribing!
-          </p>
-        ) : (
-          <form
+        <form
             onSubmit={(e) => {
               e.preventDefault()
-              setSubscribed(true)
+              toastSuccess('Thanks for subscribing!', 'Your 10% off code is on its way.')
               setEmail('')
             }}
             className="mx-auto mt-6 flex max-w-md flex-col gap-3 sm:flex-row"
@@ -457,7 +452,6 @@ const Home = () => {
               Subscribe
             </button>
           </form>
-        )}
       </section>
 
     </div>

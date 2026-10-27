@@ -15,19 +15,19 @@ const Header = () => {
   const linkClass = ({ isActive }) =>
     `text-sm font-medium transition-colors hover:text-[#4a8f78] ${
       isActive
-        ? 'text-white underline decoration-2 underline-offset-8'
-        : 'text-white'
+        ? 'text-black underline decoration-2 underline-offset-8'
+        : 'text-black'
     }`
 
   return (
-    <header className="fixed inset-x-0 top-3 z-50 mx-6 rounded-full bg-black backdrop-blur">
-      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-y-2 px-4 py-4 sm:px-6 lg:px-8">
+    <header className=" fixed inset-x-0  z-50  bg-white backdrop-blur">
+      <div className=" mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-y-2 px-4 py-4 sm:px-6 lg:px-8">
 
         {/* Left: logo */}
         <Link to="/" className="flex items-center gap-2 whitespace-nowrap text-xl font-bold tracking-tight text-[#4a8f78]">
           <img src="/verdora-mark.svg" alt="" className="h-8 w-8" />
           <span>
-            <span className="text-white">Verd</span>ora
+            <span className="text-black">Verd</span>ora
           </span>
         </Link>
 

@@ -2,13 +2,13 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import loginBg from '../assets/img/login-bg.jpg'
+import { showSuccess } from '../utility/alerts'
 
 const inputClass =
   'mt-1 w-full rounded-lg border border-[#8fc4ad]/50 bg-[#f8f7f2] px-4 py-2.5 text-sm text-[#163d33] placeholder-[#163d33]/40 outline-none transition focus:border-[#4a8f78] focus:ring-2 focus:ring-[#8fc4ad]/50'
 
 const Login = () => {
   const [form, setForm] = useState({ email: '', password: '' })
-  const [done, setDone] = useState(false)
 
   // One handler for every input
   const handleChange = (e) => {
@@ -18,7 +18,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log('Login data:', form)
-    setDone(true)
+    showSuccess('Welcome back!', 'Demo only: login is not connected to a server yet.')
     setForm({ email: '', password: '' })
   }
 
@@ -55,12 +55,6 @@ const Login = () => {
         onSubmit={handleSubmit}
         className="mt-8 space-y-5"
       >
-        {done && (
-          <div className="rounded-lg border border-[#8fc4ad] bg-[#8fc4ad]/20 p-3 text-sm font-medium text-[#163d33]">
-            Form submitted. (Login is not connected to a server yet.)
-          </div>
-        )}
-
         <div>
           <label
             htmlFor="email"

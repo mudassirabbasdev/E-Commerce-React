@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { showError, showSuccess } from '../utility/alerts'
 import signupBg from '../assets/img/signup-bg.jpg'
 
 const inputClass =
@@ -10,8 +11,6 @@ const emptyForm = { name: '', email: '', password: '', confirm: '' }
 
 const Signup = () => {
   const [form, setForm] = useState(emptyForm)
-  const [error, setError] = useState('')
-  const [done, setDone] = useState(false)
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -22,20 +21,17 @@ const Signup = () => {
 
     // Simple validation before "sending" anything
     if (form.password.length < 6) {
-      setError('Password must be at least 6 characters.')
-      setDone(false)
+      showError('Password too short', 'Use at least 6 characters.')
       return
     }
 
     if (form.password !== form.confirm) {
-      setError('Passwords do not match.')
-      setDone(false)
+      showError('Passwords do not match', 'Please type the same password in both boxes.')
       return
     }
 
-    setError('')
     console.log('Signup data:', form)
-    setDone(true)
+    showSuccess('Account created!', 'Demo only: sign up is not connected to a server yet.')
     setForm(emptyForm)
   }
 
@@ -72,18 +68,6 @@ const Signup = () => {
         onSubmit={handleSubmit}
         className="mt-8 space-y-5"
       >
-        {error && (
-          <div className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm font-medium text-red-700">
-            {error}
-          </div>
-        )}
-
-        {done && (
-          <div className="rounded-lg border border-[#8fc4ad] bg-[#8fc4ad]/20 p-3 text-sm font-medium text-[#163d33]">
-            Form submitted. (Sign up is not connected to a server yet.)
-          </div>
-        )}
-
         <div>
           <label
             htmlFor="name"
