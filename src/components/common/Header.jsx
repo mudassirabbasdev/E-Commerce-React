@@ -1,6 +1,7 @@
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useCart } from '../../context/CartContext'
+import SpecularButton from '../animations/SpecularButton'
 
 const links = [
   { to: '/', label: 'Home', end: true },
@@ -11,6 +12,8 @@ const links = [
 
 const Header = () => {
   const { count } = useCart()
+  const navigate = useNavigate()
+
   // NavLink gives us { isActive }: true when the link matches the current URL
   const linkClass = ({ isActive }) =>
     `text-sm font-medium transition-colors hover:text-[#4a8f78] ${
@@ -39,22 +42,26 @@ const Header = () => {
             </NavLink>
           ))}
 
-          
-
           {/* Auth buttons */}
           <NavLink to="/login" className={linkClass}>
             Log in
           </NavLink>
-          <Link
-            to="/signup"
-            className="rounded-lg  bg-[#60cfaa] px-4 py-2 text-sm font-semibold  transition hover:bg-white active:scale-95"
+          <SpecularButton
+            size="md"
+            radius={14}
+            tint="#000000"
+            tintOpacity={0.85}
+            textColor="#60cfaa"
+            lineColor="#60cfaa"
+            baseColor="#4a8f78"
+            onClick={() => navigate('/signup')}
           >
-            Sign up
-          </Link>
+            Sign Up
+          </SpecularButton>
 
-          <NavLink to="/cart" aria-label="Cart" className="relative rounded-lg bg-[#60cfaa] px-4 py-2 text-sm font-semibold  transition hover:bg-white active:scale-95">
+          <NavLink to="/cart" aria-label="Cart" className="relative rounded-lg bg-[#60cfaa] px-4 py-2 text-sm font-semibold  transition hover:text-white hover:bg-black active:scale-95">
             {count > 0 && (
-              <span className="absolute -right-2 -top-2 flex h-5 min-w-5 items-center justify-center rounded-full bg-white px-1 text-[11px] font-bold text-black ring-2 ring-black">
+              <span className="absolute -right-2 -top-2 flex h-5 min-w-5 items-center justify-center rounded-full bg-white px-1  text-[11px] font-bold text-black ring-2 ring-black">
                 {count}
               </span>
             )}
@@ -64,7 +71,7 @@ const Header = () => {
               viewBox="0 0 24 24"
               strokeWidth={1.8}
               stroke="currentColor"
-              className="h-6 w-10"
+              className="h-5 w-12 "
             >
               <path
                 strokeLinecap="round"
@@ -73,8 +80,6 @@ const Header = () => {
               />
             </svg>
           </NavLink>
-
-
         </nav>
       </div>
     </header>
